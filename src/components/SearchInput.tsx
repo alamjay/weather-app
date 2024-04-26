@@ -1,51 +1,77 @@
 import * as React from "react";
-import {FC, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 
 type props = {
-    options: any
+    options: any;
+    searchTerm: string;
+    setSearchTerm: any;
 }
 
-export const SearchInput: FC<props> = ({ options }: props) => {
+export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm }: props) => {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const searchInputRef: any = useRef(null);
+
+    const [location, setLocation] = useState("");
     const [filteredOptions, setFilteredOptions] = useState([]);
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-    const handleInputChange = (e: any) => {
-        const term = e.target.value;
-        setSearchTerm(term);
+    useEffect(() => {
+        if (!!options) {
+            const filtered = options?.filter((option: any) =>
+                option.name.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            setFilteredOptions(filtered)
+            // setIsDropdownVisible(true)
+        }
+    }, [options])
 
-        // Filter options based on search term
-        const filtered = options.filter((option: any) =>
-            option.toLowerCase().includes(term.toLowerCase())
-        );
-        setFilteredOptions(filtered);
-    };
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+                // setIsDropdownVisible(false)
+                setFilteredOptions([])
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [])
 
     const handleOptionClick = (option: any) => {
-        setSearchTerm(option);
-        setFilteredOptions([]);
+        // setSearchTerm(option);
+        // setIsDropdownVisible(false);
+        setLocation(option)
+        setFilteredOptions([])
+    };
+
+    const handleInputChange = (e: any) => {
+        const location = e.target.value;
+        setLocation(location)
+        setSearchTerm(location)
     };
 
     return (
-        <div className="w-8/12 flex flex-col items-center justify-center">
+        <div className="w-8/12 flex flex-col items-center justify-center" ref={searchInputRef}>
             <input
                 type="search"
                 className="w-full border-2 border-blue-400 bg-blue-50 rounded p-2"
                 placeholder="Search location"
-                value={searchTerm}
+                value={location}
                 onChange={handleInputChange}
             />
 
-            {filteredOptions.length > 0 && (
+            {!!filteredOptions && (
                 <div className="w-[682px] h-[200px]">
-                    <ul className="absolute z-10 w-[682px] bg-white border border-gray-300 rounded-md shadow-lg">
-                        {filteredOptions.map((option, index) => (
+                    <ul className="absolute z-10 w-[682px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
+                        {filteredOptions.map((option: any, index) => (
                             <li
                                 key={index}
-                                onClick={() => handleOptionClick(option)}
+                                onClick={() => handleOptionClick(option.name)}
                                 className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                             >
-                                {option}
+                                {option.name}
                             </li>
                         ))}
                     </ul>
