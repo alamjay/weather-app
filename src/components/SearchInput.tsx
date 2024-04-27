@@ -5,18 +5,19 @@ type props = {
     options: any;
     searchTerm: string;
     setSearchTerm: any;
+    setSelectedLocation: any;
 }
 
-export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm }: props) => {
+export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, setSelectedLocation }: props) => {
 
     const searchInputRef: any = useRef(null);
 
     const [location, setLocation] = useState("");
-    const [filteredOptions, setFilteredOptions] = useState([]);
+    const [filteredOptions, setFilteredOptions] = useState<any[] | null>(null);
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
     useEffect(() => {
-        if (!!options) {
+        if (options?.length > 0) {
             const filtered = options?.filter((option: any) =>
                 option.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
@@ -29,7 +30,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm }: p
         const handleClickOutside = (event: any) => {
             if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
                 // setIsDropdownVisible(false)
-                setFilteredOptions([])
+                setFilteredOptions(null)
             }
         };
 
@@ -42,8 +43,9 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm }: p
     const handleOptionClick = (option: any) => {
         // setSearchTerm(option);
         // setIsDropdownVisible(false);
-        setLocation(option)
-        setFilteredOptions([])
+        setLocation(option.name)
+        setFilteredOptions(null)
+        setSelectedLocation(option)
     };
 
     const handleInputChange = (e: any) => {
@@ -68,10 +70,10 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm }: p
                         {filteredOptions.map((option: any, index) => (
                             <li
                                 key={index}
-                                onClick={() => handleOptionClick(option.name)}
+                                onClick={() => handleOptionClick(option)}
                                 className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                             >
-                                {option.name}
+                                {option.name}, {option.state}, {option.country}
                             </li>
                         ))}
                     </ul>
