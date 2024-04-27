@@ -44,7 +44,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
     const handleOptionClick = (option: any) => {
         // setSearchTerm(option);
         // setIsDropdownVisible(false);
-        setLocation(option.name)
+        setLocation(`${option.name}, ${option.state}, ${option.country}`)
         setFilteredOptions(null)
         setSelectedLocation(option)
     };
@@ -88,22 +88,6 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                     </ul>
                 </div>
             </Transition>
-
-            {/*{!!filteredOptions && (*/}
-            {/*    <div className="flex shrink w-full max-w-8/12 h-[200px]">*/}
-            {/*        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">*/}
-            {/*            {filteredOptions.map((option: any, index) => (*/}
-            {/*                <li*/}
-            {/*                    key={index}*/}
-            {/*                    onClick={() => handleOptionClick(option)}*/}
-            {/*                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"*/}
-            {/*                >*/}
-            {/*                    {option.name}, {option.state}, {option.country}*/}
-            {/*                </li>*/}
-            {/*            ))}*/}
-            {/*        </ul>*/}
-            {/*    </div>*/}
-            {/*)}*/}
         </div>
     )
 }
