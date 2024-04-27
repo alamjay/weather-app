@@ -18,13 +18,10 @@ function App() {
     const [weatherForecast, setWeatherForecast] = useState<any | null>(null);
 
     useEffect(() => {
-        console.log(weatherForecast)
-    }, [weatherForecast])
-
-    useEffect(() => {
 
         if (!!weatherResult) {
             let prevDate: any = null;
+            let minTempByDay: { [key: string]: number } = {};
             const filteredWeatherForecast = weatherResult.filter((forecast: any) => {
                 const utcTimestamp = parseInt(forecast.dt) * 1000;
                 const currentDate = new Date(utcTimestamp).toLocaleString("en-GB").split(",")[0]
@@ -101,7 +98,7 @@ function App() {
 
     return (
         <WeatherContext.Provider value={"Test"}>
-            <div className="container mx-auto flex flex-col items-center py-8 gap-y-16 w-9/12">
+            <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 h-screen">
                 <div className="flex justify-center items-center gap-x-4">
                     <img className="h-20" src={logo}/>
                     <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {FC, useEffect, useRef, useState} from "react";
+import {Transition} from "@headlessui/react";
 
 type props = {
     options: any;
@@ -55,7 +56,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
     };
 
     return (
-        <div className="w-8/12 flex flex-col items-center justify-center" ref={searchInputRef}>
+        <div ref={searchInputRef} className="flex flex-col justify-center md:w-[750px] sm:w-[500px] w-[300px]">
             <input
                 type="search"
                 className="w-full border-2 border-blue-400 bg-blue-50 rounded p-2"
@@ -64,10 +65,18 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                 onChange={handleInputChange}
             />
 
-            {!!filteredOptions && (
-                <div className="w-[682px] h-[200px]">
-                    <ul className="absolute z-10 w-[682px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
-                        {filteredOptions.map((option: any, index) => (
+            <Transition
+                show={!!filteredOptions}
+                enter="transition ease-out duration-100"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div className="absolute z-10 md:w-[750px] w-[500px] sm:w-[500px] w-[300px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
+                    <ul>
+                        {filteredOptions?.map((option: any, index) => (
                             <li
                                 key={index}
                                 onClick={() => handleOptionClick(option)}
@@ -78,7 +87,23 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                         ))}
                     </ul>
                 </div>
-            )}
+            </Transition>
+
+            {/*{!!filteredOptions && (*/}
+            {/*    <div className="flex shrink w-full max-w-8/12 h-[200px]">*/}
+            {/*        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">*/}
+            {/*            {filteredOptions.map((option: any, index) => (*/}
+            {/*                <li*/}
+            {/*                    key={index}*/}
+            {/*                    onClick={() => handleOptionClick(option)}*/}
+            {/*                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"*/}
+            {/*                >*/}
+            {/*                    {option.name}, {option.state}, {option.country}*/}
+            {/*                </li>*/}
+            {/*            ))}*/}
+            {/*        </ul>*/}
+            {/*    </div>*/}
+            {/*)}*/}
         </div>
     )
 }

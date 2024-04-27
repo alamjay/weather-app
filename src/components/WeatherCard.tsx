@@ -22,7 +22,6 @@ const WeatherCard: FC<props> = ({forecast, index}: props) => {
     const [icon, setIcon] = useState<any | null>(null)
 
     useEffect(() => {
-        console.log("forecase", forecast)
         if (!!forecast) {
             switch (forecast?.weather[0]?.icon) {
                 case "02d" :
@@ -83,18 +82,17 @@ const WeatherCard: FC<props> = ({forecast, index}: props) => {
                 <div className="flex flex-col gap-y items-center">
                     <p className="flex text-center">{forecast.weather[0].main}</p>
                     <p className="flex text-center">{forecast.weather[0].description}</p>
-                    <img className="w-20" src={icon} alt={forecast.weather[0].icon} />
+                    <img className="w-20 bg-gray-400 rounded-lg shadow-2xl my-4" src={icon} alt={forecast.weather[0].icon} />
 
-                    <div className="flex w-full justify-between border-b-2 border-gray-400 pb-4">
-                        <div className="flex flex-col">
-                            <p className="flex justify-center">Min</p>
-                            <p className="">{parseFloat(forecast?.main?.temp_min.toFixed(1))}&deg;C</p>
+                    <div className="flex w-full justify-center border-b-2 border-gray-400 pb-4">
+                        <div className="px-4 bg-gray-600 rounded-lg">
+                            <p className="text-white">{forecast?.main?.temp.toFixed()}&deg;C</p>
                         </div>
 
-                        <div className="flex flex-col">
-                            <p className="">Max</p>
-                            <p className="">{parseFloat(forecast?.main?.temp_max.toFixed(1))}&deg;C</p>
-                        </div>
+                        {/*<div className="flex flex-col items-center">*/}
+                        {/*    <p className="bg-gray-600 text-white px-4 rounded-lg">Max</p>*/}
+                        {/*    <p className="">{parseFloat(forecast?.main?.temp_max.toFixed())}&deg;C</p>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
 
