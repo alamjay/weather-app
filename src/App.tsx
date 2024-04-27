@@ -18,13 +18,10 @@ function App() {
     const [weatherForecast, setWeatherForecast] = useState<any | null>(null);
 
     useEffect(() => {
-        console.log(weatherForecast)
-    }, [weatherForecast])
-
-    useEffect(() => {
 
         if (!!weatherResult) {
             let prevDate: any = null;
+            let minTempByDay: { [key: string]: number } = {};
             const filteredWeatherForecast = weatherResult.filter((forecast: any) => {
                 const utcTimestamp = parseInt(forecast.dt) * 1000;
                 const currentDate = new Date(utcTimestamp).toLocaleString("en-GB").split(",")[0]

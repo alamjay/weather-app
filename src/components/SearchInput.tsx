@@ -55,7 +55,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
     };
 
     return (
-        <div className="w-8/12 flex flex-col items-center justify-center" ref={searchInputRef}>
+        <div className="w-8/12 flex flex-col justify-center" ref={searchInputRef}>
             <input
                 type="search"
                 className="w-full border-2 border-blue-400 bg-blue-50 rounded p-2"
@@ -65,8 +65,8 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
             />
 
             {!!filteredOptions && (
-                <div className="w-[682px] h-[200px]">
-                    <ul className="absolute z-10 w-[682px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
+                <div className="flex shrink w-full max-w-8/12 h-[200px]">
+                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
                         {filteredOptions.map((option: any, index) => (
                             <li
                                 key={index}
