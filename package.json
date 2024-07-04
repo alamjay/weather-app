@@ -1,6 +1,6 @@
 {
-  "homepage": "https://weather.jahangiralam.co.uk",
   "name": "weather-app",
+  "homepage": "https://jahangiralam.co.uk/weather",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
