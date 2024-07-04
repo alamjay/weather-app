@@ -111,10 +111,16 @@ function App() {
                     setSelectedLocation={setSelectedLocation}
                 />
 
-                <div className="flex py-4 items-center gap-x-4">
+                <div className="hidden md:flex py-4 items-center gap-x-4">
                     {weatherForecast?.map((forecast: any, index: any) => (
                         <WeatherCard key={index} forecast={forecast} index={index} />
                     ))}
+                </div>
+
+                <div className="flex md:hidden py-4 items-center gap-x-4 bg-gray-400 rounded-lg h-[200px] w-full">
+                    <div className="flex gap-x-4 items-center py-2">
+
+                    </div>
                 </div>
 
             </div>

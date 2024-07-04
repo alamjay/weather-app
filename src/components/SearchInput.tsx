@@ -74,7 +74,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
             >
-                <div className="absolute z-10 md:w-[750px] w-[500px] sm:w-[500px] w-[300px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
+                <div className="absolute z-10 md:w-[750px] sm:w-[500px] w-[300px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
                     <ul>
                         {filteredOptions?.map((option: any, index) => (
                             <li

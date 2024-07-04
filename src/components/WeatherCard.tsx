@@ -9,6 +9,7 @@ import icon10 from "../assets/icons/10.png";
 import icon11 from "../assets/icons/11.png";
 import icon13 from "../assets/icons/13.png";
 import icon50 from "../assets/icons/50.png";
+import {printDay} from "../hooks/printDay";
 
 type props = {
     forecast: any;
@@ -56,23 +57,9 @@ const WeatherCard: FC<props> = ({forecast, index}: props) => {
 
     useEffect(() => {
 
-        printDay();
+        setDay(printDay(index, forecast))
 
     }, [forecast])
-   
-    // output Today, Tomorrow and the rest of the days
-    const printDay = () => {
-        if (index === 0) {
-            setDay('Today');
-        } else if (index === 1) {
-            setDay('Tomorrow');
-        } else {
-            const utcTimestamp = parseInt(forecast.dt) * 1000
-        const date = new Date(utcTimestamp);
-        setDay(days[date.getDay()]);
-
-        }
-    }
 
     return (
         <div className="rounded-md bg-gray-200 p-3 w-44">
