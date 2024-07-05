@@ -3,7 +3,7 @@ import logo from './assets/images/partly-cloudy-day.svg';
 import {SearchInput} from "./components/SearchInput";
 import "./output.css"
 import _, {debounce} from "lodash";
-import WeatherCard from "./components/WeatherCard";
+import Forecast from "./components/Forecast";
 
 const WeatherContext: any = React.createContext(null);
 
@@ -98,25 +98,22 @@ function App() {
 
     return (
         <WeatherContext.Provider value={"Test"}>
-            <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 h-screen">
-                <div className="flex justify-center items-center gap-x-4">
-                    <img className="h-20" src={logo}/>
-                    <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
+            <div className="bg-gray-100">
+                <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 h-screen">
+                    <div className="flex justify-center items-center gap-x-4">
+                        <img className="h-20" src={logo}/>
+                        <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
+                    </div>
+
+                    <SearchInput
+                        searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        options={locationSuggestions}
+                        setSelectedLocation={setSelectedLocation}
+                    />
+
+                    <Forecast weatherForecast={weatherForecast} />
                 </div>
-
-                <SearchInput
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
-                    options={locationSuggestions}
-                    setSelectedLocation={setSelectedLocation}
-                />
-
-                <div className="flex py-4 items-center gap-x-4">
-                    {weatherForecast?.map((forecast: any, index: any) => (
-                        <WeatherCard key={index} forecast={forecast} index={index} />
-                    ))}
-                </div>
-
             </div>
         </WeatherContext.Provider>
     );
