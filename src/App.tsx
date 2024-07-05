@@ -4,6 +4,7 @@ import {SearchInput} from "./components/SearchInput";
 import "./output.css"
 import _, {debounce} from "lodash";
 import Forecast from "./components/Forecast";
+import {AirQualityMap} from "./components/AirQualityMap";
 
 const WeatherContext: any = React.createContext(null);
 
@@ -113,6 +114,8 @@ function App() {
                     />
 
                     <Forecast weatherForecast={weatherForecast} />
+
+                    <AirQualityMap selectedLocation={{lat: 51.7676194, lon: 0.0974893}} />
                 </div>
             </div>
         </WeatherContext.Provider>
