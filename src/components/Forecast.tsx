@@ -7,51 +7,50 @@ type props = {
     weatherForecast: any;
 }
 
-const WeatherCard: FC<props> = ({forecast, index}: any) => {
+const WeatherCard: FC<any> = ({forecast, index}: any) => {
 
     const [day, setDay] = useState<string | null>(null);
     const [icon, setIcon] = useState<any | null>(null)
 
-
     useEffect(() => {
-        setIcon(iconMapping(forecast));
         setDay(printDay(index, forecast))
+        setIcon(iconMapping(forecast))
     }, [index, forecast])
 
     return (
-        <div className="rounded-md bg-gray-200 p-3 w-44">
+        <div className="rounded-md shadow-lg bg-gray-200 p-2 lg:p-3 w-28 lg:w-36 xl:w-44">
             <div className="flex flex-col gap-y-4">
                 <h3 className="flex justify-center text-center text-lg font-semibold text-blue-950">{day}</h3>
 
                 <div className="flex flex-col gap-y items-center">
                     <p className="flex text-center">{forecast.weather[0].main}</p>
-                    <p className="flex text-center">{forecast.weather[0].description}</p>
-                    <img className="w-20 bg-gray-400 rounded-lg shadow-2xl my-4" src={icon} alt={forecast.weather[0].icon} />
+                    <p className="hidden xl:flex text-center">{forecast.weather[0].description}</p>
+                    <img className="w-14 lg:w-20 bg-gray-400 rounded-lg shadow-2xl my-2 lg:my-4" src={icon} alt={forecast.weather[0].icon} />
 
                     <div className="flex w-full justify-center border-b-2 border-gray-400 pb-4">
                         <div className="px-4 bg-gray-600 rounded-lg">
-                            <p className="text-white">{forecast?.main?.temp.toFixed()}&deg;C</p>
+                            <p className="text-sm lg:text-base text-white">{forecast?.main?.temp.toFixed()}&deg;C</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex flex-col">
                     <div className="flex justify-between">
-                        <p>Humidity</p>
-                        <p>{forecast?.main?.humidity}%</p>
+                        <p className="text-sm lg:text-base">Humidity</p>
+                        <p className="text-sm lg:text-base">{forecast?.main?.humidity}%</p>
                     </div>
                     <div className="flex justify-between border-b-2 border-gray-400 pb-4">
-                        <p>Pressure</p>
-                        <p>{forecast?.main?.pressure} hPa</p>
+                        <p className="w-8 lg:w-auto text-ellipsis overflow-hidden text-sm">Pressure</p>
+                        <p className="text-sm lg:text-base">{forecast?.main?.pressure} hPa</p>
                     </div>
-                    <h5 className="pt-4">Wind</h5>
+                    <h5 className="text-gray-700 pt-4">Wind</h5>
                     <div className="flex justify-between">
-                        <p>Speed</p>
-                        <p>{forecast?.wind?.speed}ms</p>
+                        <p className="text-sm lg:text-base">Speed</p>
+                        <p className="text-sm lg:text-base">{forecast?.wind?.speed}ms</p>
                     </div>
                     <div className="flex justify-between">
-                        <p>Direction</p>
-                        <p>{forecast?.wind?.deg}&deg;</p>
+                        <p className="text-sm lg:text-base">Direction</p>
+                        <p className="text-sm lg:text-base">{forecast?.wind?.deg}&deg;</p>
                     </div>
                 </div>
             </div>
@@ -64,10 +63,9 @@ const ForecastRowMobile = ({forecast, index}: any) => {
     const [day, setDay] = useState<string | null>(null);
     const [icon, setIcon] = useState<any | null>(null)
 
-
     useEffect(() => {
-        setIcon(iconMapping(forecast));
         setDay(printDay(index, forecast))
+        setIcon(iconMapping(forecast))
     }, [index, forecast])
 
     return (
@@ -84,8 +82,8 @@ const Forecast: FC<props> = ({weatherForecast}: props) => {
     return (
         <>
         <div className="hidden md:flex py-4 items-center gap-x-4">
-            {weatherForecast?.map((forecast: any, index: number) => (
-                <WeatherCard key={index} forecast={forecast} />
+            {weatherForecast?.map((forecast: any, index: any) => (
+                <WeatherCard key={index} index={index} forecast={forecast} />
             ))}
         </div>
 
@@ -93,7 +91,8 @@ const Forecast: FC<props> = ({weatherForecast}: props) => {
             <div className="grid md:hidden sm:w-[500px] w-[300px] items-center gap-x-4 bg-gray-100 shadow-lg w-full divide-y divide-y-2 divide-blue-400">
                 {weatherForecast?.map((forecast: any, index: any) => (
                     <ForecastRowMobile 
-                        key={index} 
+                        key={index}
+                        index={index}
                         forecast={forecast} 
                     />
                 ))}
