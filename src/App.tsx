@@ -3,7 +3,7 @@ import logo from './assets/images/partly-cloudy-day.svg';
 import {SearchInput} from "./components/SearchInput";
 import "./output.css"
 import _, {debounce} from "lodash";
-import WeatherCard from "./components/WeatherCard";
+import Forecast from "./components/Forecast";
 
 const WeatherContext: any = React.createContext(null);
 
@@ -111,18 +111,7 @@ function App() {
                     setSelectedLocation={setSelectedLocation}
                 />
 
-                <div className="hidden md:flex py-4 items-center gap-x-4">
-                    {weatherForecast?.map((forecast: any, index: any) => (
-                        <WeatherCard key={index} forecast={forecast} index={index} />
-                    ))}
-                </div>
-
-                <div className="flex md:hidden py-4 items-center gap-x-4 bg-gray-400 rounded-lg h-[200px] w-full">
-                    <div className="flex gap-x-4 items-center py-2">
-
-                    </div>
-                </div>
-
+                <Forecast weatherForecast={weatherForecast} />
             </div>
         </WeatherContext.Provider>
     );

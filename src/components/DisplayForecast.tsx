@@ -1,5 +1,5 @@
 import {FC, useEffect} from "react";
-import WeatherCard from "./WeatherCard";
+import WeatherCard from "./Forecast";
 
 type props = {
     weather: any;
@@ -18,14 +18,14 @@ const DisplayForecast: FC<props> = ({weather, display}: props) => {
 
         <div className="container" >
           <div className="row">
-
+{/* 
             {display &&
 
               // Loop through 5 day forecast
               weather.map((forecast: any, index: any) => {
-                return <WeatherCard key={index} index={index} forecast={forecast} /> 
+                return <WeatherCard forecast={forecast} /> 
               })
-            } 
+            }  */}
           </div>
         </div>
       </div>
