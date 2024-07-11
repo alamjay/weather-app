@@ -5,11 +5,10 @@ import "./output.css"
 import _, {debounce} from "lodash";
 import Forecast from "./components/Forecast";
 import {AirQualityMap} from "./components/AirQualityMap";
+import {AirQualityCard} from "./components/AirQualityCard";
 import { Map } from './components/Map';
 import { Provider } from 'react-redux';
 import { store } from './redux';
-
-const WeatherContext: any = React.createContext(null);
 
 function App() {
 
@@ -123,8 +122,10 @@ function App() {
                             {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
                             {/* lat: 51.7676194, lon: 0.0974893 */}
 
-                            <div className="flex justify-between">
+                            <div className="flex justify-between w-full px-4">
                                 <Map selectedLocation={selectedLocation} />
+                                <AirQualityCard selectedLocation={selectedLocation} />
+                                <div className="rounded-md shadow-lg h-[400px] w-[400px]"></div>
                             </div>
                         </>
                     }
