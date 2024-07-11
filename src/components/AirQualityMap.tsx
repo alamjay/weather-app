@@ -1,20 +1,28 @@
 import * as React from 'react';
-import {APIProvider, Map, MapCameraChangedEvent} from '@vis.gl/react-google-maps';
+import { useEffect } from 'react';
+// import {APIProvider, Map, MapCameraChangedEvent} from '@vis.gl/react-google-maps';
 
 export const AirQualityMap = ({selectedLocation}: any) => {
+
+    useEffect(() => {
+        console.log("airqualitymap", selectedLocation);
+        
+    }, [selectedLocation])
+
     return (
         <>
-            {selectedLocation &&
-                <APIProvider apiKey="AIzaSyATZXXMOQdzjJxoD85in2g3hFlqI5O79lA" onLoad={() => console.log('Maps API has loaded.')}>
+            {/* {selectedLocation &&
+                <APIProvider apiKey="AIzaSyATZXXMOQdzjJxoD85in2g3hFlqI5O79lA">
                     <Map
                         defaultZoom={13}
                         defaultCenter={ { lat: selectedLocation.lat, lng: selectedLocation.lon } }
-                        onCameraChanged={ (ev: MapCameraChangedEvent) =>
-                            console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-                        }>
+                        // onCameraChanged={ (ev: MapCameraChangedEvent) =>
+                        //     console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+                        // }
+                        >
                     </Map>
                 </APIProvider>
-            }
+            } */}
         </>
     )
 }

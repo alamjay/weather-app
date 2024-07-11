@@ -5,6 +5,9 @@ import "./output.css"
 import _, {debounce} from "lodash";
 import Forecast from "./components/Forecast";
 import {AirQualityMap} from "./components/AirQualityMap";
+import { Map } from './components/Map';
+import { Provider } from 'react-redux';
+import { store } from './redux';
 
 const WeatherContext: any = React.createContext(null);
 
@@ -98,9 +101,9 @@ function App() {
     }, [fetchLocations])
 
     return (
-        <WeatherContext.Provider value={"Test"}>
+        <Provider store={store}>
             <div className="bg-gray-100">
-                <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 h-screen">
+                <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 min-h-screen max-h-max">
                     <div className="flex justify-center items-center gap-x-4">
                         <img className="h-20" src={logo}/>
                         <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
@@ -113,12 +116,21 @@ function App() {
                         setSelectedLocation={setSelectedLocation}
                     />
 
-                    <Forecast weatherForecast={weatherForecast} />
+                    {weatherForecast &&
+                        <>
+                            <Forecast weatherForecast={weatherForecast} />
 
-                    <AirQualityMap selectedLocation={{lat: 51.7676194, lon: 0.0974893}} />
+                            {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
+                            {/* lat: 51.7676194, lon: 0.0974893 */}
+
+                            <div className="flex justify-between">
+                                <Map selectedLocation={selectedLocation} />
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
-        </WeatherContext.Provider>
+        </Provider>
     );
 }
 

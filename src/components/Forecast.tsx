@@ -87,17 +87,15 @@ const Forecast: FC<props> = ({weatherForecast}: props) => {
             ))}
         </div>
 
-        {weatherForecast && 
-            <div className="grid md:hidden sm:w-[500px] w-[300px] items-center gap-x-4 bg-gray-100 shadow-lg w-full divide-y divide-y-2 divide-blue-400">
-                {weatherForecast?.map((forecast: any, index: any) => (
-                    <ForecastRowMobile 
-                        key={index}
-                        index={index}
-                        forecast={forecast} 
-                    />
-                ))}
-            </div>
-        }
+        <div className="grid md:hidden sm:w-[500px] w-[300px] items-center gap-x-4 bg-gray-100 shadow-lg w-full divide-y divide-y-2 divide-blue-400">
+            {weatherForecast?.map((forecast: any, index: any) => (
+                <ForecastRowMobile 
+                    key={index}
+                    index={index}
+                    forecast={forecast} 
+                />
+            ))}
+        </div>
 
         </>
     );
