@@ -9,6 +9,7 @@ import {AirQualityCard} from "./components/AirQualityCard";
 import { Map } from './components/Map';
 import { Provider } from 'react-redux';
 import { store } from './redux';
+import { PollenCard } from './components/PollenCard';
 
 function App() {
 
@@ -125,7 +126,7 @@ function App() {
                             <div className="flex justify-between w-full px-[143px] gap-x-4">
                                 <Map selectedLocation={selectedLocation} />
                                 <AirQualityCard selectedLocation={selectedLocation} />
-                                <div className="rounded-md shadow-lg h-[368px] w-[368px]"></div>
+                                <PollenCard selectedLocation={selectedLocation} />
                             </div>
                         </>
                     }

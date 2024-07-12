@@ -18,6 +18,11 @@ export const AirQualityCard: React.FC<props> = ({selectedLocation}: props) => {
     }
   }, [data])
 
+  useEffect(() => {
+    console.log("selectedLocation", selectedLocation);
+    
+}, [selectedLocation])
+
     return (
       <div className="rounded-md shadow-lg h-[368px] w-[368px] bg-gray-200 py-8 flex flex-col items-center justify-between">
         <h2 className="font-serif text-3xl font-extrabold text-cyan-950">Air Quality</h2>

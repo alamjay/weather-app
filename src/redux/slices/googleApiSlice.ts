@@ -28,8 +28,14 @@ export const googleApi = createApi({
                     }
                 }
             })
+        }),
+
+        getPollenLevel: builder.query({
+            query: (selectedLocation) => ({
+                url: `https://pollen.googleapis.com/v1/forecast:lookup?key=${process.env.REACT_APP_GOOGLE_API_KEY}&location.latitude=${selectedLocation.lat}&location.longitude=${selectedLocation.lon}&days=1`
+            })
         })
     }),
 })
 
-export const { useGetStaticMapQuery, useGetAirQualityQuery } = googleApi;
+export const { useGetStaticMapQuery, useGetAirQualityQuery, useGetPollenLevelQuery } = googleApi;
