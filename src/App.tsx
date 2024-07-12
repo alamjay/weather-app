@@ -4,8 +4,11 @@ import {SearchInput} from "./components/SearchInput";
 import "./output.css"
 import _, {debounce} from "lodash";
 import Forecast from "./components/Forecast";
-
-const WeatherContext: any = React.createContext(null);
+import {AirQualityMap} from "./components/AirQualityMap";
+import {AirQualityCard} from "./components/AirQualityCard";
+import { Map } from './components/Map';
+import { Provider } from 'react-redux';
+import { store } from './redux';
 
 function App() {
 
@@ -97,9 +100,9 @@ function App() {
     }, [fetchLocations])
 
     return (
-        <WeatherContext.Provider value={"Test"}>
+        <Provider store={store}>
             <div className="bg-gray-100">
-                <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 h-screen">
+                <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 min-h-screen max-h-max">
                     <div className="flex justify-center items-center gap-x-4">
                         <img className="h-20" src={logo}/>
                         <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
@@ -112,10 +115,23 @@ function App() {
                         setSelectedLocation={setSelectedLocation}
                     />
 
-                    <Forecast weatherForecast={weatherForecast} />
+                    {weatherForecast &&
+                        <>
+                            <Forecast weatherForecast={weatherForecast} />
+
+                            {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
+                            {/* lat: 51.7676194, lon: 0.0974893 */}
+
+                            <div className="flex justify-between w-full px-[143px] gap-x-4">
+                                <Map selectedLocation={selectedLocation} />
+                                <AirQualityCard selectedLocation={selectedLocation} />
+                                <div className="rounded-md shadow-lg h-[368px] w-[368px]"></div>
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
-        </WeatherContext.Provider>
+        </Provider>
     );
 }
 
