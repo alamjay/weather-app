@@ -122,10 +122,10 @@ function App() {
                             {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
                             {/* lat: 51.7676194, lon: 0.0974893 */}
 
-                            <div className="flex justify-between w-full px-4">
+                            <div className="flex justify-between w-full px-[143px] gap-x-4">
                                 <Map selectedLocation={selectedLocation} />
                                 <AirQualityCard selectedLocation={selectedLocation} />
-                                <div className="rounded-md shadow-lg h-[400px] w-[400px]"></div>
+                                <div className="rounded-md shadow-lg h-[368px] w-[368px]"></div>
                             </div>
                         </>
                     }

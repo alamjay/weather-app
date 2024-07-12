@@ -9,7 +9,7 @@ type props = {
 export const Map = ({selectedLocation}: props) => {
 
 
-    const [size, setSize] = React.useState("400x400");
+    const [size, setSize] = React.useState("360x360");
 
     const { data, error, isLoading } = useGetStaticMapQuery({selectedLocation, size}, {skip: !selectedLocation});
 
@@ -19,8 +19,8 @@ export const Map = ({selectedLocation}: props) => {
 
     return (
         <img 
-            className="rounded-md shadow-lg h-[400px] w-[400px]"
-            src={`https://maps.googleapis.com/maps/api/staticmap?center=${selectedLocation.lat},${selectedLocation.lon}&zoom=13&size=400x400&key=AIzaSyATZXXMOQdzjJxoD85in2g3hFlqI5O79lA`} 
+            className="rounded-md shadow-lg h-[368px] w-[368px]"
+            src={`https://maps.googleapis.com/maps/api/staticmap?center=${selectedLocation.lat},${selectedLocation.lon}&zoom=13&size=368x368&key=AIzaSyATZXXMOQdzjJxoD85in2g3hFlqI5O79lA`} 
         />
     )
 }
