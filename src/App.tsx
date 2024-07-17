@@ -6,7 +6,7 @@ import _, {debounce} from "lodash";
 import Forecast from "./components/Forecast";
 import {AirQualityMap} from "./components/AirQualityMap";
 import {AirQualityCard} from "./components/AirQualityCard";
-import { Map } from './components/Map';
+import { MapCard } from './components/MapCard';
 import { Provider } from 'react-redux';
 import { store } from './redux';
 import { PollenCard } from './components/PollenCard';
@@ -123,10 +123,12 @@ function App() {
                             {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
                             {/* lat: 51.7676194, lon: 0.0974893 */}
 
-                            <div className="flex justify-between w-full px-[143px] gap-x-4">
-                                <Map selectedLocation={selectedLocation} />
-                                <AirQualityCard selectedLocation={selectedLocation} />
-                                <PollenCard selectedLocation={selectedLocation} />
+                            <div className="flex flex-col md:flex-row justify-center w-full 2xl:px-[143px] gap-x-4 gap-y-8 md:gap-y">
+                                <MapCard selectedLocation={selectedLocation} />
+                                <div className="flex flex-col sm:flex-row justify-center gap-x-4 gap-y-4 sm:gap-y-0">
+                                    <AirQualityCard selectedLocation={selectedLocation} />
+                                    <PollenCard selectedLocation={selectedLocation} />
+                                </div>
                             </div>
                         </>
                     }
