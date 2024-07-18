@@ -72,9 +72,11 @@ const ForecastRowMobile = ({forecast, index}: any) => {
     }, [index, forecast])
 
     return (
-        <div className="flex w-full items-center justify-between gap-x-4 px-3">
+        <div className="flex w-full items-center justify-between gap-x-4 px-3 py-2">
             <h4 className=" w-3/12">{day}</h4>
-            <img className="w-12" src={icon} />
+            <div className="p bg-gray-400 rounded-md">
+                <img className="w-12" src={icon} />
+            </div>
             <p className=" w-1/12">{forecast?.main?.temp.toFixed()}&deg;C</p>
             <p className=" w-2/12">{forecast.weather[0].main}</p>
         </div>
