@@ -36,12 +36,15 @@ const WeatherCard: FC<any> = ({forecast, index}: any) => {
 
                 <div className="flex flex-col">
                     <div className="flex justify-between">
-                        <p className="text-sm lg:text-base">Humidity</p>
+                        <p className="w-12 lg:w-auto text-ellipsis overflow-hidden text-sm lg:text-base">Humidity</p>
                         <p className="text-sm lg:text-base">{forecast?.main?.humidity}%</p>
                     </div>
                     <div className="flex justify-between border-b-2 border-gray-400 pb-4">
-                        <p className="w-8 lg:w-auto text-ellipsis overflow-hidden text-sm">Pressure</p>
-                        <p className="text-sm lg:text-base">{forecast?.main?.pressure} hPa</p>
+                        <p className="w-10 lg:w-auto text-ellipsis overflow-hidden text-sm lg:text-base ">Pressure</p>
+                        <div className="flex">
+                            <p className="lg:text-base text-end">{forecast?.main?.pressure}</p>
+                            <p className="flex text-hpaText lg:text-[16px] items-center lg:items-baseline">&nbsp;hPa</p>
+                        </div>
                     </div>
                     <h5 className="text-gray-700 pt-4">Wind</h5>
                     <div className="flex justify-between">
@@ -49,7 +52,7 @@ const WeatherCard: FC<any> = ({forecast, index}: any) => {
                         <p className="text-sm lg:text-base">{forecast?.wind?.speed}ms</p>
                     </div>
                     <div className="flex justify-between">
-                        <p className="text-sm lg:text-base">Direction</p>
+                        <p className="w-10 lg:w-auto text-sm lg:text-base text-ellipsis overflow-hidden">Direction</p>
                         <p className="text-sm lg:text-base">{forecast?.wind?.deg}&deg;</p>
                     </div>
                 </div>
@@ -87,7 +90,7 @@ const Forecast: FC<props> = ({weatherForecast}: props) => {
             ))}
         </div>
 
-        <div className="grid md:hidden sm:w-[500px] w-[300px] items-center gap-x-4 bg-gray-100 shadow-lg w-full divide-y divide-y-2 divide-blue-400">
+        <div className="grid md:hidden sm:w-[500px] w-[300px] items-center bg-gray-100 shadow-lg w-full divide-y-2 divide-blue-400">
             {weatherForecast?.map((forecast: any, index: any) => (
                 <ForecastRowMobile 
                     key={index}

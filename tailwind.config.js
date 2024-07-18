@@ -4,6 +4,10 @@ module.exports = {
       "./src/**/*.{html,js,tsx}"
   ],
   theme: {
+    fontSize: {
+      "weatherCardText": "12px",
+      "hpaText": "12px"
+    },
     extend: {},
   },
   plugins: [],
