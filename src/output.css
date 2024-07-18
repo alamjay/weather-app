@@ -906,6 +906,10 @@ video {
   font-weight: 600;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .leading-7 {
   line-height: 1.75rem;
 }

@@ -24,7 +24,6 @@ export const PollenCard: React.FC<props> = ({selectedLocation}: props) => {
             <h2 className="font-serif text-[20px] leading-7 font-extrabold text-cyan-950">Pollen Level</h2>
             <div className="flex flex-col gap-2 text-center">
                 {/* <h3 className="font-verdana font-black text-[5rem] lg:text-[8rem] leading-none text-cyan-900 drop-shadow-lg align-text-bottom">{pollenInfo?.value}</h3> */}
-                {/* <p className="font-serif text-[18px] leading-7 text-top">{pollenInfo?.category}</p> */}
                 {pollenInfo && 
                     <GaugeChart 
                         id="gauge-chart2"
@@ -34,6 +33,7 @@ export const PollenCard: React.FC<props> = ({selectedLocation}: props) => {
                         hideText
                     />
                 }
+                <p className="font-serif text-[18px] leading-none text-top text-cyan-900 font-bold">{pollenInfo?.category}</p>
             </div>
             <h5 className="font-verdana lg:text-xl lg:leading-7 font-semibold text-cyan-900 px-4 text-center text-sm">{pollenInfo?.indexDescription}</h5>
         </div>
