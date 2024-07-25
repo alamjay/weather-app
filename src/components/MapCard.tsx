@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {useEffect} from 'react';
-import {useGetStaticMapQuery} from "../redux/slices/googleApiSlice";
 import {APIProvider, Map, MapCameraChangedEvent} from '@vis.gl/react-google-maps';
 
 type props = {
@@ -26,6 +25,7 @@ export const MapCard = ({selectedLocation}: props) => {
                 className="rounded-md shadow-lg w-full h-[368px] md:w-[242px] lg:w-[304px] xl:w-[368px] sm:max-w-[500px] sm:w-[500px] gap-x-4"
                 // style={{width: '100vw', height: '100vh'}}
                 defaultCenter={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
+                center={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
                 defaultZoom={13}
                 gestureHandling={'greedy'}
                 disableDefaultUI={true}
