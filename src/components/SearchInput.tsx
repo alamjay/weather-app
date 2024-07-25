@@ -19,6 +19,8 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
 
     useEffect(() => {
         if (options?.length > 0) {
+            console.log("options", options);
+            
             const filtered = options?.filter((option: any) =>
                 option.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
@@ -82,7 +84,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                                 onClick={() => handleOptionClick(option)}
                                 className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                             >
-                                {option.name}, {option.state}, {option.country}
+                                {option.name && option.name}{option.state && ", " + option.state}{option.country && ", " + option.country}
                             </li>
                         ))}
                     </ul>
