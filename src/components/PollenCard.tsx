@@ -15,7 +15,7 @@ export const PollenCard: React.FC<props> = ({selectedLocation}: props) => {
 
     useEffect(() => {
         if (!!data) {
-            setPollenInfo(data.dailyInfo[0]?.pollenTypeInfo[0]?.indexInfo)
+            setPollenInfo(data.dailyInfo[0]?.pollenTypeInfo[0])
         }
     }, [data])
 
@@ -29,13 +29,14 @@ export const PollenCard: React.FC<props> = ({selectedLocation}: props) => {
                         id="gauge-chart2"
                         nrOfLevels={10}
                         arcWidth={0.3}
-                        percent={((pollenInfo?.value * 2) / 10)}
+                        percent={((pollenInfo?.indexInfo?.value * 2) / 10)}
                         hideText
+                        animate={false}
                     />
                 }
-                <p className="font-serif text-[18px] leading-none text-top text-cyan-900 font-bold">{pollenInfo?.category}</p>
+                <p className="font-serif text-[18px] leading-none text-top text-cyan-900 font-bold">{pollenInfo?.indexInfo?.category}</p>
             </div>
-            <h5 className="font-verdana lg:text-xl lg:leading-7 font-semibold text-cyan-900 px-4 text-center text-sm">{pollenInfo?.indexDescription}</h5>
+            <h5 className="font-verdana lg:text-xl lg:leading-7 font-semibold text-cyan-900 px-4 text-center text-sm">{pollenInfo?.healthRecommendations}</h5>
         </div>
     )
 }
