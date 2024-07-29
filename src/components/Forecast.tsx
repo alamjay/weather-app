@@ -24,36 +24,13 @@ const WeatherCard: FC<any> = ({forecast, index}: any) => {
 
                 <div className="flex flex-col gap-y items-center">
                     <p className="flex text-center">{forecast.weather[0].main}</p>
-                    <p className="hidden xl:flex text-center">{forecast.weather[0].description}</p>
+                    {/* <p className="hidden xl:flex text-center">{forecast.weather[0].description}</p> */}
                     <img className="w-14 lg:w-20 bg-gray-400 rounded-lg shadow-2xl my-2 lg:my-4" src={icon} alt={forecast.weather[0].icon} />
 
-                    <div className="flex w-full justify-center border-b-2 border-gray-400 pb-4">
+                    <div className="flex w-full justify-center pb-4">
                         <div className="px-4 bg-gray-600 rounded-lg">
                             <p className="text-sm lg:text-base text-white">{forecast?.main?.temp.toFixed()}&deg;C</p>
                         </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-col">
-                    <div className="flex justify-between">
-                        <p className="w-12 lg:w-auto text-ellipsis overflow-hidden text-sm lg:text-base">Humidity</p>
-                        <p className="text-sm lg:text-base">{forecast?.main?.humidity}%</p>
-                    </div>
-                    <div className="flex justify-between border-b-2 border-gray-400 pb-4">
-                        <p className="w-10 lg:w-auto text-ellipsis overflow-hidden text-sm lg:text-base ">Pressure</p>
-                        <div className="flex">
-                            <p className="lg:text-base text-end">{forecast?.main?.pressure}</p>
-                            <p className="flex text-hpaText lg:text-[16px] items-center lg:items-baseline">&nbsp;hPa</p>
-                        </div>
-                    </div>
-                    <h5 className="text-gray-700 pt-4">Wind</h5>
-                    <div className="flex justify-between">
-                        <p className="text-sm lg:text-base">Speed</p>
-                        <p className="text-sm lg:text-base">{forecast?.wind?.speed}ms</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <p className="w-10 lg:w-auto text-sm lg:text-base text-ellipsis overflow-hidden">Direction</p>
-                        <p className="text-sm lg:text-base">{forecast?.wind?.deg}&deg;</p>
                     </div>
                 </div>
             </div>

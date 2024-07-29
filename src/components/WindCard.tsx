@@ -16,8 +16,8 @@ export const WindCard = ({selectedLocation}: any) => {
                         <img className="w-6 h-6" src={windImage} />
                     </div>
                         <div className="flex items-end">
-                            <p className="text-[28px] text-gray-800 leading-none text-gray-500">3.9</p>
-                            <p className="inline-block align-bottom leading-none">ms</p>
+                            <p className="text-[28px] text-grey-800 leading-none text-gray-500">3.9ms</p>
+                            {/* <p className="inline-block align-bottom leading-none">ms</p> */}
                         </div>
                     </div>
                     <h5 className="">Wind Speed</h5>
@@ -26,7 +26,7 @@ export const WindCard = ({selectedLocation}: any) => {
                     <div className="flex w-full gap-x-2 items-center">
                         <Arrow angle={45} />
                         <div className="flex items-end">
-                            <p className="text-[28px] text-gray-800 leading-none text-gray-500">125</p>
+                            <p className="text-[28px] text-grey-800 leading-none text-gray-500">125°</p>
                             <p className="inline-block align-bottom leading-none"></p>
                         </div>
                     </div>
