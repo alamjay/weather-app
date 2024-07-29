@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     fontSize: {
       "weatherCardText": "12px",
-      "hpaText": "12px"
+      "hpaText": "12px",
+      "heading2": "48px"
     },
     extend: {},
   },

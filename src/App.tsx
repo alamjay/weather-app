@@ -10,6 +10,9 @@ import { MapCard } from './components/MapCard';
 import { Provider } from 'react-redux';
 import { store } from './redux';
 import { PollenCard } from './components/PollenCard';
+import { TodayCard } from './components/TodayCard';
+import { TodayLayout } from './layouts/TodayLayout';
+import { HumidityCard } from './components/HumidityCard';
 
 function App() {
 
@@ -118,18 +121,15 @@ function App() {
 
                     {weatherForecast &&
                         <>
+                            <h2 className="flex text-start justify-start text-heading2 font-serif w-full">Today</h2>
+                            <div className="flex flex-col md:flex-row justify-center w-full 2xl:px-[143px] gap-x-4 gap-y-8 md:gap-y">
+                                <TodayLayout selectedLocation={selectedLocation} />
+                            </div>
+
                             <Forecast weatherForecast={weatherForecast} />
 
                             {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
                             {/* lat: 51.7676194, lon: 0.0974893 */}
-
-                            <div className="flex flex-col md:flex-row justify-center w-full 2xl:px-[143px] gap-x-4 gap-y-8 md:gap-y">
-                                <MapCard selectedLocation={selectedLocation} />
-                                <div className="flex flex-col sm:flex-row justify-center gap-x-4 gap-y-4 sm:gap-y-0">
-                                    <AirQualityCard selectedLocation={selectedLocation} />
-                                    <PollenCard selectedLocation={selectedLocation} />
-                                </div>
-                            </div>
                         </>
                     }
                 </div>

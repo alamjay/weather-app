@@ -22,7 +22,7 @@ export const MapCard = ({selectedLocation}: props) => {
         <div className="flex justify-center">
             <APIProvider apiKey={process.env.REACT_APP_GOOGLE_API_KEY || ""}>
             <Map
-                className="rounded-md shadow-lg w-full h-[368px] md:w-[242px] lg:w-[304px] xl:w-[368px] sm:max-w-[500px] sm:w-[500px] gap-x-4"
+                className="rounded-md shadow-lg w-full h-[168px] md:w-[242px] lg:w-[304px] xl:w-[368px] sm:max-w-[500px] sm:w-[500px] gap-x-4"
                 // style={{width: '100vw', height: '100vh'}}
                 defaultCenter={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
                 center={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
