@@ -24,7 +24,6 @@ const WeatherCard: FC<any> = ({forecast, index}: any) => {
 
                 <div className="flex flex-col gap-y items-center">
                     <p className="flex text-center">{forecast.weather[0].main}</p>
-                    {/* <p className="hidden xl:flex text-center">{forecast.weather[0].description}</p> */}
                     <img className="w-14 lg:w-20 bg-gray-400 rounded-lg shadow-2xl my-2 lg:my-4" src={icon} alt={forecast.weather[0].icon} />
 
                     <div className="flex w-full justify-center pb-4">

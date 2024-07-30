@@ -7,12 +7,11 @@ import Forecast from "./components/Forecast";
 import {AirQualityMap} from "./components/AirQualityMap";
 import {AirQualityCard} from "./components/AirQualityCard";
 import { MapCard } from './components/MapCard';
-import { Provider } from 'react-redux';
-import { store } from './redux';
 import { PollenCard } from './components/PollenCard';
 import { TodayCard } from './components/TodayCard';
 import { TodayLayout } from './layouts/TodayLayout';
 import { HumidityCard } from './components/HumidityCard';
+import {useGetWeatherForecastQuery} from './redux/slices/openWeatherApiSlice';
 
 function App() {
 
@@ -23,6 +22,8 @@ function App() {
     const [weatherLoading, setWeatherLoading] = useState(false);
     const [weatherResult, setWeatherResult] = useState<any | null>(null);
     const [weatherForecast, setWeatherForecast] = useState<any | null>(null);
+
+    const { data } = useGetWeatherForecastQuery(selectedLocation, {skip: !selectedLocation})
 
     useEffect(() => {
 
@@ -52,10 +53,10 @@ function App() {
     }, [searchTerm])
 
     useEffect(() => {
-        if (!!selectedLocation) {
-            fetchWeather()
+        if (!!data) {
+            setWeatherResult(data.list)
         }
-    }, [selectedLocation])
+    }, [data])
 
     const fetchLocations = useCallback(async (term: string) => {
         setLocationLoading(true)
@@ -78,63 +79,38 @@ function App() {
         }
     }, [])
 
-    const fetchWeather = async () => {
-        setWeatherLoading(true)
-        try {
-            const appID = "603e94367063c5c7949ba98d72dccbc4";
-            const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${selectedLocation.lat}&lon=${selectedLocation.lon}&appid=${appID}&units=metric`);
-
-            if (!response.ok) {
-                throw new Error("Network response error!")
-            }
-
-            const result = await response.json();
-            setWeatherResult(result?.list)
-            setWeatherLoading(false)
-
-        } catch (error) {
-
-        } finally {
-
-        }
-    }
-
     const debouncedSearch = useMemo(() => {
         return debounce(fetchLocations, 500);
     }, [fetchLocations])
 
     return (
-        <Provider store={store}>
-            <div className="bg-gray-100">
-                <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 min-h-screen max-h-max">
-                    <div className="flex justify-center items-center gap-x-4">
-                        <img className="h-20" src={logo}/>
-                        <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
-                    </div>
+        <div className="bg-gray-100">
+            <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 min-h-screen max-h-max">
+                <div className="flex justify-center items-center gap-x-4">
+                    <img className="h-20" src={logo}/>
+                    <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
+                </div>
 
-                    <SearchInput
-                        searchTerm={searchTerm}
-                        setSearchTerm={setSearchTerm}
-                        options={locationSuggestions}
-                        setSelectedLocation={setSelectedLocation}
-                    />
+                <SearchInput
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    options={locationSuggestions}
+                    setSelectedLocation={setSelectedLocation}
+                />
 
-                    {weatherForecast &&
-                        <>
-                            <h2 className="flex text-start justify-start text-heading2 font-serif w-full">Today</h2>
+                {weatherForecast &&
+                    <>
+                        <div className="">
+                            <h2 className="flex text-start justify-start text-heading2 font-serif w-full 2xl:px-[143px]">Today</h2>
                             <div className="flex flex-col md:flex-row justify-center w-full 2xl:px-[143px] gap-x-4 gap-y-8 md:gap-y">
                                 <TodayLayout selectedLocation={selectedLocation} />
                             </div>
-
-                            <Forecast weatherForecast={weatherForecast} />
-
-                            {/* <AirQualityMap selectedLocation={selectedLocation} />  */}
-                            {/* lat: 51.7676194, lon: 0.0974893 */}
-                        </>
-                    }
-                </div>
+                        </div>
+                        <Forecast weatherForecast={weatherForecast} />
+                    </>
+                }
             </div>
-        </Provider>
+        </div>
     );
 }
 

@@ -21,7 +21,7 @@ const Arrow: React.FC<ArrowProps> = ({ angle }) => {
             <g style={arrowStyle}>
                 <polygon points="50,20 70,60 50,45 30,60" fill="rgb(22 78 99)" />
             </g>
-            <text x="50" y="15" text-anchor="middle" font-size="22" fill="#333333">N</text>
+            <text x="50" y="15" textAnchor="middle" fontSize="22" fill="#333333">N</text>
         </svg>
     );
 };

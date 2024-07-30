@@ -8,7 +8,7 @@ export const TodayCard = () => {
                 <div className="flex w-9/12">
                     <div className="flex justify-between items-center">
                         <img src={icon1} />
-                        <p>Scattered Clouds</p>
+                        <p className="text-[18px] text-gray-800">Scattered Clouds</p>
                     </div>
                 </div>
                 <div className="flex flex-col divide-y-2 w-3/12">
