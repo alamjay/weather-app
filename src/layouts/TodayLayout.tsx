@@ -58,7 +58,7 @@ export const TodayLayout = ({selectedLocation}: any) => {
                 <WindCard todaysWeather={todaysWeather} />
             </div>
             <PollenCard selectedLocation={selectedLocation} />
-            <div className="flex flex-col gap-y-8">
+            <div className="flex flex-col gap-y-4">
                 <AirQualityCard selectedLocation={selectedLocation} />
                 <MapCard selectedLocation={selectedLocation} />
             </div>
