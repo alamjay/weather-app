@@ -18,9 +18,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
     useEffect(() => {
-        if (options?.length > 0) {
-            console.log("options", options);
-            
+        if (options?.length > 0) {            
             const filtered = options?.filter((option: any) =>
                 option.name.toLowerCase().includes(searchTerm.toLowerCase())
             )

@@ -11,11 +11,12 @@ import { PollenCard } from './components/PollenCard';
 import { TodayCard } from './components/TodayCard';
 import { TodayLayout } from './layouts/TodayLayout';
 import { HumidityCard } from './components/HumidityCard';
-import {useGetWeatherForecastQuery} from './redux/slices/openWeatherApiSlice';
+import {useGetWeatherForecastQuery, useGetLocationQuery} from './redux/slices/openWeatherApiSlice';
 
 function App() {
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [locationParam, setLocationParam] = useState("");
     const [locationSuggestions, setLocationSuggestions] = useState(null);
     const [selectedLocation, setSelectedLocation] = useState<any | null>(null);
     const [locationLoading, setLocationLoading] = useState(false);
@@ -24,6 +25,7 @@ function App() {
     const [weatherForecast, setWeatherForecast] = useState<any | null>(null);
 
     const { data } = useGetWeatherForecastQuery(selectedLocation, {skip: !selectedLocation})
+    const { data: getLocationData } = useGetLocationQuery({term: locationParam}, {skip: !locationParam})
 
     useEffect(() => {
 
@@ -48,9 +50,13 @@ function App() {
 
     useEffect(() => {
         if (searchTerm?.length > 2) {
-            debouncedSearch(searchTerm);
+            debouncedSetLocationParam(searchTerm)
         }
     }, [searchTerm])
+
+    const debouncedSetLocationParam = useMemo(() => debounce((term: string) => {
+        setLocationParam(term);
+    }, 500), []);
 
     useEffect(() => {
         if (!!data) {
@@ -58,30 +64,12 @@ function App() {
         }
     }, [data])
 
-    const fetchLocations = useCallback(async (term: string) => {
-        setLocationLoading(true)
-        try {
-            const appID = "603e94367063c5c7949ba98d72dccbc4";
-            const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${term}&limit=5&appid=${appID}`);
-
-            if (!response.ok) {
-                throw new Error("Network response error!")
-            }
-
-            const result = await response.json();
-            setLocationSuggestions(result)
+    useEffect(() => {
+        if (!!getLocationData) {
+            setLocationSuggestions(getLocationData)
             setLocationLoading(false)
-
-        } catch (error) {
-
-        } finally {
-
         }
-    }, [])
-
-    const debouncedSearch = useMemo(() => {
-        return debounce(fetchLocations, 500);
-    }, [fetchLocations])
+    }, [getLocationData])
 
     return (
         <div className="bg-gray-100">

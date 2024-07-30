@@ -13,11 +13,6 @@ export const MapCard = ({selectedLocation}: props) => {
 
     // const { data, error, isLoading } = useGetStaticMapQuery({selectedLocation, size}, {skip: !selectedLocation});
 
-    useEffect(() => {
-        console.log("selectedLocationas", selectedLocation);
-        
-    }, [selectedLocation])
-
     return (
         <div className="flex justify-center">
             <APIProvider apiKey={process.env.REACT_APP_GOOGLE_API_KEY || ""}>
