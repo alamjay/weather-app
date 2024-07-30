@@ -36,11 +36,11 @@ export const TodayLayout = ({selectedLocation}: any) => {
                 "temp_min": temp.min,
                 "temp_max": temp.max,
                 "description": todaysForecastList[0].weather[0].description,
-                "forecast": todaysForecastList[0].weather[0].icon,
+                "icon": todaysForecastList[0].weather[0].icon,
                 "humidity": todaysForecastList[0].main.humidity,
                 "pressure": todaysForecastList[0].main.pressure,
                 "wind_speed": todaysForecastList[0].wind.speed,
-                "wind_direction": todaysForecastList[0].wind.deg,
+                "wind_direction": todaysForecastList[0].wind.deg
             })
         }
     }, [weatherForecastData])

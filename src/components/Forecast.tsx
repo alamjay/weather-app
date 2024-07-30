@@ -14,7 +14,7 @@ const WeatherCard: FC<any> = ({forecast, index}: any) => {
 
     useEffect(() => {
         setDay(printDay(index, forecast))
-        setIcon(iconMapping(forecast))
+        setIcon(iconMapping(forecast?.weather[0]?.icon))
     }, [index, forecast])
 
     return (
@@ -44,7 +44,7 @@ const ForecastRowMobile = ({forecast, index}: any) => {
 
     useEffect(() => {
         setDay(printDay(index, forecast))
-        setIcon(iconMapping(forecast))
+        setIcon(iconMapping(forecast?.weather[0]?.icon))
     }, [index, forecast])
 
     return (
