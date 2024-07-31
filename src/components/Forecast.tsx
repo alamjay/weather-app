@@ -2,6 +2,7 @@ import {FC, useEffect, useState} from "react";
 import { iconMapping } from "../utils/iconMapping";
 
 import {printDay} from "../utils/printDay";
+import { NotFoundCard } from "./NotFoundCard";
 
 type props = {
     weatherForecast: any;
@@ -61,11 +62,17 @@ const ForecastRowMobile = ({forecast, index}: any) => {
 
 const Forecast: FC<props> = ({weatherForecast}: props) => {
     return (
-        <>
-        <div className="hidden md:flex py-4 items-center gap-x-4">
-            {weatherForecast?.map((forecast: any, index: any) => (
-                <WeatherCard key={index} index={index} forecast={forecast} />
-            ))}
+        <div className="w-full">
+        <h2 className="flex text-start justify-start text-heading2 font-serif w-full 2xl:px-[143px]">Weekly Forecast</h2>
+        <div className="hidden md:flex py-4 items-center justify-center gap-x-4 w-full">
+            {weatherForecast ? 
+                weatherForecast?.map((forecast: any, index: any) => (
+                    <WeatherCard key={index} index={index} forecast={forecast} />
+                )):
+                <div className="w-full bg-gray-200 h-[240px] shadow-lg rounded-lg 2xl:mx-[143px]">
+                    <NotFoundCard />
+                </div>
+            }
         </div>
 
         <div className="grid md:hidden sm:w-[500px] w-[300px] items-center bg-gray-100 shadow-lg w-full divide-y-2 divide-blue-400">
@@ -78,7 +85,7 @@ const Forecast: FC<props> = ({weatherForecast}: props) => {
             ))}
         </div>
 
-        </>
+        </div>
     );
 }
 

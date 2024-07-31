@@ -16,16 +16,18 @@ export const MapCard = ({selectedLocation}: props) => {
     return (
         <div className="flex justify-center">
             <APIProvider apiKey={process.env.REACT_APP_GOOGLE_API_KEY || ""}>
-            <Map
-                className="rounded-md shadow-lg w-full h-[176px] md:w-[242px] lg:w-[304px] xl:w-[368px] sm:max-w-[500px] sm:w-[500px] gap-x-4"
-                // style={{width: '100vw', height: '100vh'}}
-                defaultCenter={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
-                center={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
-                defaultZoom={13}
-                gestureHandling={'greedy'}
-                disableDefaultUI={true}
-                />
-        </APIProvider>
+                <div className="overflow-hidden shadow-lg rounded-lg">
+                    <Map
+                        className="w-full h-[176px] md:w-[242px] lg:w-[304px] xl:w-[368px] sm:max-w-[500px] sm:w-[500px] gap-x-4"
+                        // style={{width: '100vw', height: '100vh'}}
+                        defaultCenter={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
+                        center={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
+                        defaultZoom={13}
+                        gestureHandling={'greedy'}
+                        disableDefaultUI={true}
+                    />
+                </div>
+            </APIProvider>
         </div>
         // <img 
         //     className="rounded-md shadow-lg h-[368px] w-[368px]"

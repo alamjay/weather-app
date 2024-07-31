@@ -19,8 +19,7 @@ export const googleApi = createApi({
 
         getAirQuality: builder.query({
             query: (body) => ({
-                url: "",
-                // url: `https://airquality.googleapis.com/v1/currentConditions:lookup?key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+                url: `https://airquality.googleapis.com/v1/currentConditions:lookup?key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
                 method: "POST",
                 body: {
                     "location": {
@@ -33,8 +32,7 @@ export const googleApi = createApi({
 
         getPollenLevel: builder.query({
             query: (selectedLocation) => ({
-                url: "",
-                // url: `https://pollen.googleapis.com/v1/forecast:lookup?key=${process.env.REACT_APP_GOOGLE_API_KEY}&location.latitude=${selectedLocation.lat}&location.longitude=${selectedLocation.lon}&days=1`
+                url: `https://pollen.googleapis.com/v1/forecast:lookup?key=${process.env.REACT_APP_GOOGLE_API_KEY}&location.latitude=${selectedLocation.lat}&location.longitude=${selectedLocation.lon}&days=1`
             })
         })
     }),
