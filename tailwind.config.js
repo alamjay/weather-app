@@ -7,7 +7,12 @@ module.exports = {
     fontSize: {
       "weatherCardText": "12px",
       "hpaText": "12px",
-      "heading2": "48px"
+      "heading2": "36px",
+      "heading2Mobile": "24px",
+      "textMobile": "16px",
+      "textFigures": "28px",
+      "textFiguresMobile": "20px",
+      "cardHeading": "20px"
     },
     extend: {},
   },

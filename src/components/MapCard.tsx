@@ -14,11 +14,11 @@ export const MapCard = ({selectedLocation}: props) => {
     // const { data, error, isLoading } = useGetStaticMapQuery({selectedLocation, size}, {skip: !selectedLocation});
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center w-full">
             <APIProvider apiKey={process.env.REACT_APP_GOOGLE_API_KEY || ""}>
-                <div className="overflow-hidden shadow-lg rounded-lg">
+                <div className="overflow-hidden shadow-lg rounded-lg w-full">
                     <Map
-                        className="w-full h-[176px] md:w-[242px] lg:w-[304px] xl:w-[368px] sm:max-w-[500px] sm:w-[500px] gap-x-4"
+                        className="w-full h-[176px] lg:w-[304px] xl:w-[368px] gap-x-4"
                         // style={{width: '100vw', height: '100vh'}}
                         defaultCenter={{lat: selectedLocation.lat, lng: selectedLocation.lon}}
                         center={{lat: selectedLocation.lat, lng: selectedLocation.lon}}

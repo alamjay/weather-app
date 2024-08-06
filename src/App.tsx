@@ -73,10 +73,10 @@ function App() {
 
     return (
         <div className="bg-gray-100">
-            <div className="container m-auto flex flex-col justify-center items-center py-8 gap-y-8 w-9/12 min-h-screen max-h-max">
+            <div className="container m-auto flex flex-col justify-center items-center py-2 lg:py-8 gap-y-4 lg:gap-y-8 w-9/12 min-h-screen max-h-max">
                 <div className="flex justify-center items-center gap-x-4">
-                    <img className="h-20" src={logo}/>
-                    <h2 className="text-2xl font-semibold text-blue-900">Weather App</h2>
+                    <img className="h-12 md:h-20" src={logo}/>
+                    <h2 className="text-[18px] md:text-[24px] font-semibold text-blue-900">Weather App</h2>
                 </div>
 
                 <SearchInput
@@ -89,8 +89,8 @@ function App() {
                 {weatherForecast &&
                     <>
                         <div className="">
-                            <h2 className="flex text-start justify-start text-heading2 font-serif w-full 2xl:px-[143px]">Today</h2>
-                            <div className="flex flex-col md:flex-row justify-center w-full 2xl:px-[143px] gap-x-4 gap-y-8 md:gap-y">
+                            <h2 className="flex text-start justify-start text-cyan-800 text-heading2Mobile lg:text-heading2 font-serif w-full 2xl:px-[143px] pb-2">Today</h2>
+                            <div className="flex flex-col md:flex-row justify-center w-full 2xl:px-[143px] gap-x-4 gap-y-4 md:gap-y-8 md:gap-y">
                                 <TodayLayout selectedLocation={selectedLocation} />
                             </div>
                         </div>

@@ -63,8 +63,8 @@ const ForecastRowMobile = ({forecast, index}: any) => {
 const Forecast: FC<props> = ({weatherForecast}: props) => {
     return (
         <div className="w-full">
-        <h2 className="flex text-start justify-start text-heading2 font-serif w-full 2xl:px-[143px]">Weekly Forecast</h2>
-        <div className="hidden md:flex py-4 items-center justify-center gap-x-4 w-full">
+        <h2 className="flex text-start justify-start text-cyan-800 text-heading2Mobile lg:text-heading2 font-serif w-full 2xl:px-[143px] pb-2">Weekly Forecast</h2>
+        <div className="hidden md:flex pb-4 items-center justify-center gap-x-4 w-full">
             {weatherForecast ? 
                 weatherForecast?.map((forecast: any, index: any) => (
                     <WeatherCard key={index} index={index} forecast={forecast} />
@@ -75,7 +75,7 @@ const Forecast: FC<props> = ({weatherForecast}: props) => {
             }
         </div>
 
-        <div className="grid md:hidden sm:w-[500px] w-[300px] items-center bg-gray-100 shadow-lg w-full divide-y-2 divide-blue-400">
+        <div className="grid md:hidden w-full items-center bg-gray-100 shadow-lg divide-y-2 divide-blue-400">
             {weatherForecast?.map((forecast: any, index: any) => (
                 <ForecastRowMobile 
                     key={index}

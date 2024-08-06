@@ -51,8 +51,21 @@ export const TodayLayout = ({selectedLocation}: any) => {
     }, [todaysWeather])
 
     return (
-        <>
-            <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col lg:flex-row gap-y-4 lg:gap-x-4">      
+            <div className="flex flex-col sm:flex-row gap-x-4 gap-y-4">
+                <div className="flex flex-col gap-y-4 w-full">
+                    <TodayCard todaysWeather={todaysWeather} />
+                    <HumidityCard todaysWeather={todaysWeather} />
+                    <WindCard todaysWeather={todaysWeather} />
+                </div>
+                <PollenCard selectedLocation={selectedLocation} />
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-y-4 sm:gap-x-4">
+                <AirQualityCard selectedLocation={selectedLocation} />
+                <MapCard selectedLocation={selectedLocation} />
+            </div>
+            
+            {/* <div className="flex flex-col gap-y-4">
                 <TodayCard todaysWeather={todaysWeather} />
                 <HumidityCard todaysWeather={todaysWeather} />
                 <WindCard todaysWeather={todaysWeather} />
@@ -61,7 +74,7 @@ export const TodayLayout = ({selectedLocation}: any) => {
             <div className="flex flex-col gap-y-4">
                 <AirQualityCard selectedLocation={selectedLocation} />
                 <MapCard selectedLocation={selectedLocation} />
-            </div>
-        </>
+            </div> */}
+        </div>
     )
 }
