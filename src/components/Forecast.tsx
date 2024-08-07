@@ -2,6 +2,7 @@ import {FC, useEffect, useState} from "react";
 import { iconMapping } from "../utils/iconMapping";
 
 import {printDay} from "../utils/printDay";
+import { NotFoundCard } from "./NotFoundCard";
 
 type props = {
     weatherForecast: any;
@@ -14,46 +15,22 @@ const WeatherCard: FC<any> = ({forecast, index}: any) => {
 
     useEffect(() => {
         setDay(printDay(index, forecast))
-        setIcon(iconMapping(forecast))
+        setIcon(iconMapping(forecast?.weather[0]?.icon))
     }, [index, forecast])
 
     return (
-        <div className="rounded-md shadow-lg bg-gray-200 p-2 lg:p-3 w-28 lg:w-36 xl:w-44">
+        <div className="rounded-md shadow-lg bg-gray-200 p-2 lg:p-3 w-28 lg:w-36 xl:w-[158px]">
             <div className="flex flex-col gap-y-4">
                 <h3 className="flex justify-center text-center text-lg font-semibold text-blue-950">{day}</h3>
 
                 <div className="flex flex-col gap-y items-center">
                     <p className="flex text-center">{forecast.weather[0].main}</p>
-                    <p className="hidden xl:flex text-center">{forecast.weather[0].description}</p>
                     <img className="w-14 lg:w-20 bg-gray-400 rounded-lg shadow-2xl my-2 lg:my-4" src={icon} alt={forecast.weather[0].icon} />
 
-                    <div className="flex w-full justify-center border-b-2 border-gray-400 pb-4">
+                    <div className="flex w-full justify-center pb-4">
                         <div className="px-4 bg-gray-600 rounded-lg">
                             <p className="text-sm lg:text-base text-white">{forecast?.main?.temp.toFixed()}&deg;C</p>
                         </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-col">
-                    <div className="flex justify-between">
-                        <p className="w-12 lg:w-auto text-ellipsis overflow-hidden text-sm lg:text-base">Humidity</p>
-                        <p className="text-sm lg:text-base">{forecast?.main?.humidity}%</p>
-                    </div>
-                    <div className="flex justify-between border-b-2 border-gray-400 pb-4">
-                        <p className="w-10 lg:w-auto text-ellipsis overflow-hidden text-sm lg:text-base ">Pressure</p>
-                        <div className="flex">
-                            <p className="lg:text-base text-end">{forecast?.main?.pressure}</p>
-                            <p className="flex text-hpaText lg:text-[16px] items-center lg:items-baseline">&nbsp;hPa</p>
-                        </div>
-                    </div>
-                    <h5 className="text-gray-700 pt-4">Wind</h5>
-                    <div className="flex justify-between">
-                        <p className="text-sm lg:text-base">Speed</p>
-                        <p className="text-sm lg:text-base">{forecast?.wind?.speed}ms</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <p className="w-10 lg:w-auto text-sm lg:text-base text-ellipsis overflow-hidden">Direction</p>
-                        <p className="text-sm lg:text-base">{forecast?.wind?.deg}&deg;</p>
                     </div>
                 </div>
             </div>
@@ -68,7 +45,7 @@ const ForecastRowMobile = ({forecast, index}: any) => {
 
     useEffect(() => {
         setDay(printDay(index, forecast))
-        setIcon(iconMapping(forecast))
+        setIcon(iconMapping(forecast?.weather[0]?.icon))
     }, [index, forecast])
 
     return (
@@ -85,24 +62,36 @@ const ForecastRowMobile = ({forecast, index}: any) => {
 
 const Forecast: FC<props> = ({weatherForecast}: props) => {
     return (
-        <>
-        <div className="hidden md:flex py-4 items-center gap-x-4">
-            {weatherForecast?.map((forecast: any, index: any) => (
-                <WeatherCard key={index} index={index} forecast={forecast} />
-            ))}
-        </div>
+        <div className="w-full">
+            <div className="flex flex-col items-center w-full">
+                <div className="w-full md:w-auto">
+                    <h2 className="flex text-start justify-start text-cyan-800 text-heading2Mobile lg:text-heading2 font-serif w-full pb-2">Weekly Forecast</h2>
+                    <div className="flex justify-center">
+                        <div className="hidden md:flex pb-4 items-center justify-between gap-x-4 w-full">
+                            {weatherForecast ? 
+                                weatherForecast?.map((forecast: any, index: any) => (
+                                    <WeatherCard key={index} index={index} forecast={forecast} />
+                                )):
+                                <div className="w-full bg-gray-200 h-[240px] shadow-lg rounded-lg 2xl:mx-[143px]">
+                                    <NotFoundCard />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div className="grid md:hidden sm:w-[500px] w-[300px] items-center bg-gray-100 shadow-lg w-full divide-y-2 divide-blue-400">
-            {weatherForecast?.map((forecast: any, index: any) => (
-                <ForecastRowMobile 
-                    key={index}
-                    index={index}
-                    forecast={forecast} 
-                />
-            ))}
-        </div>
+            <div className="grid md:hidden w-full items-center bg-gray-100 shadow-lg divide-y-2 divide-blue-400">
+                {weatherForecast?.map((forecast: any, index: any) => (
+                    <ForecastRowMobile 
+                        key={index}
+                        index={index}
+                        forecast={forecast} 
+                    />
+                ))}
+            </div>
 
-        </>
+        </div>
     );
 }
 

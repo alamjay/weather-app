@@ -8,8 +8,8 @@ import icon11 from "../assets/icons/11.png";
 import icon13 from "../assets/icons/13.png";
 import icon50 from "../assets/icons/50.png";
 
-export const iconMapping = (forecast: any) => {
-    switch (forecast?.weather[0]?.icon) {
+export const iconMapping = (icon: any) => {
+    switch (icon) {
         case "02d" :
         case "02n":
             return icon2;

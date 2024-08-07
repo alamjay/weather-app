@@ -1,16 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { googleApi } from './slices/googleApiSlice';
+import { openWeatherApi } from "./slices/openWeatherApiSlice";
 
 export const store = configureStore({
     reducer: {
         // Add the generated reducer as a specific top-level slice
         [googleApi.reducerPath]: googleApi.reducer,
+        [openWeatherApi.reducerPath]: openWeatherApi.reducer
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(googleApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(googleApi.middleware, openWeatherApi.middleware),
 })
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

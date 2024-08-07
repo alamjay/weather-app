@@ -3,12 +3,6 @@ import { useEffect } from 'react';
 // import {APIProvider, Map, MapCameraChangedEvent} from '@vis.gl/react-google-maps';
 
 export const AirQualityMap = ({selectedLocation}: any) => {
-
-    useEffect(() => {
-        console.log("airqualitymap", selectedLocation);
-        
-    }, [selectedLocation])
-
     return (
         <>
             {/* {selectedLocation &&
