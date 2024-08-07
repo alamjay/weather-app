@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import logo from './assets/images/partly-cloudy-day.svg';
 import {SearchInput} from "./components/SearchInput";
 import "./output.css"
+import "./assets/styles/loading-indicator.css"
 import _, {debounce} from "lodash";
 import Forecast from "./components/Forecast";
 import {AirQualityMap} from "./components/AirQualityMap";
@@ -12,6 +13,7 @@ import { TodayCard } from './components/TodayCard';
 import { TodayLayout } from './layouts/TodayLayout';
 import { HumidityCard } from './components/HumidityCard';
 import {useGetWeatherForecastQuery, useGetLocationQuery} from './redux/slices/openWeatherApiSlice';
+import { LoadingIndicator } from './components/LoadingIndicator';
 
 function App() {
 
@@ -24,7 +26,7 @@ function App() {
     const [weatherResult, setWeatherResult] = useState<any | null>(null);
     const [weatherForecast, setWeatherForecast] = useState<any | null>(null);
 
-    const { data } = useGetWeatherForecastQuery(selectedLocation, {skip: !selectedLocation})
+    const { data: weatherForecastData, isLoading: weatherForecastDataIsLoading } = useGetWeatherForecastQuery(selectedLocation, {skip: !selectedLocation})
     const { data: getLocationData } = useGetLocationQuery({term: locationParam}, {skip: !locationParam})
 
     useEffect(() => {
@@ -59,10 +61,10 @@ function App() {
     }, 500), []);
 
     useEffect(() => {
-        if (!!data) {
-            setWeatherResult(data.list)
+        if (!!weatherForecastData) {
+            setWeatherResult(weatherForecastData.list)
         }
-    }, [data])
+    }, [weatherForecastData])
 
     useEffect(() => {
         if (!!getLocationData) {
@@ -86,7 +88,8 @@ function App() {
                     setSelectedLocation={setSelectedLocation}
                 />
 
-                {weatherForecast &&
+                {!weatherForecastDataIsLoading ?
+                    weatherForecast && 
                     <div className="flex flex-col gap-y-8">
                         <div className="w-full">
                             <div className="flex flex-col md:flex-row justify-center w-full gap-x-4 gap-y-4 md:gap-y-8 md:gap-y">
@@ -94,6 +97,9 @@ function App() {
                             </div>
                         </div>
                         <Forecast weatherForecast={weatherForecast} />
+                    </div> : 
+                    <div className="flex w-full justify-center items-center h-full py-16">
+                        <LoadingIndicator />
                     </div>
                 }
             </div>
