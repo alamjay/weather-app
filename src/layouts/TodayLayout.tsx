@@ -45,11 +45,6 @@ export const TodayLayout = ({selectedLocation}: any) => {
         }
     }, [weatherForecastData])
 
-    useEffect(() => {
-        console.log("todaysWeather", todaysWeather);
-        
-    }, [todaysWeather])
-
     return (
         <div className="">
             <h2 className="flex text-start justify-start text-cyan-800 text-heading2Mobile lg:text-heading2 font-serif w-full pb-2">Today</h2>     
