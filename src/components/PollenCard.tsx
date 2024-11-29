@@ -17,9 +17,14 @@ export const PollenCard: React.FC<props> = ({selectedLocation}: props) => {
 
     useEffect(() => {
         if (!!data) {
-            setPollenInfo(data.dailyInfo[0]?.pollenTypeInfo[0])
+            setPollenInfo(data.dailyInfo[0]?.pollenTypeInfo[0]?.indexInfo)
         }
     }, [data])
+
+    useEffect(() => {
+        pollenInfo && console.log("pollenInfo", pollenInfo);
+        
+    }, [pollenInfo])
 
     return (
         <>
@@ -31,24 +36,22 @@ export const PollenCard: React.FC<props> = ({selectedLocation}: props) => {
                                 <div className="flex flex-col gap-y-2 text-center">
                                     {/* <h3 className="font-verdana font-black text-[5rem] lg:text-[8rem] leading-none text-cyan-900 drop-shadow-lg align-text-bottom">{pollenInfo?.value}</h3> */}
                                     <div className="w-[200px] md:w-[300px]">
-                                        {pollenInfo && 
-                                            <GaugeChart 
-                                                id="gauge-chart2"
-                                                nrOfLevels={10}
-                                                arcWidth={0.3}
-                                                style={{width: "100%"}}
-                                                percent={((pollenInfo?.indexInfo?.value * 2) / 10)}
-                                                hideText
-                                                animate={false}
-                                            />
-                                        }
+                                        <GaugeChart 
+                                            id="gauge-chart2"
+                                            nrOfLevels={10}
+                                            arcWidth={0.3}
+                                            style={{width: "100%"}}
+                                            percent={((pollenInfo?.value * 2) / 10)}
+                                            hideText
+                                            animate={false}
+                                        />
                                     </div>
-                                    <p className="font-serif text-[18px] leading-none text-top text-cyan-900 font-bold">{pollenInfo?.indexInfo?.category}</p>
+                                    <p className="font-serif text-[18px] leading-none text-top text-cyan-900 font-bold">{pollenInfo?.category}</p>
                                 </div>
-                                <h5 className="font-verdana lg:text-xl lg:leading-7 font-semibold text-cyan-900 px-4 text-center text-sm">{pollenInfo?.indexInfo?.indexDescription}</h5>
+                                <h5 className="font-verdana lg:text-xl lg:leading-7 font-semibold text-cyan-900 px-4 text-center text-sm">{pollenInfo?.indexDescription}</h5>
                                 {/* <h5 className="font-verdana lg:text-xl lg:leading-7 font-semibold text-cyan-900 px-4 text-center text-sm">{pollenInfo?.healthRecommendations}</h5> */}
                             </> :
-                        <NotFoundCard /> :
+                        <NotFoundCard style="min-w-[171px] lg:max-w-[304px] xl:max-w-[368px] h-[272px] md:h-[368px] w-[292px]" /> :
                     <LoadingIndicator />    
                     }
                 </div>
