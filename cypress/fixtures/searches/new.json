@@ -1,0 +1,30 @@
+[
+    {
+        "name": "New",
+        "lat": 38.4278468,
+        "lon": -84.8105037,
+        "country": "US",
+        "state": "Kentucky"
+    },
+    {
+        "name": "New",
+        "lat": 6.6517883,
+        "lon": -10.5931565,
+        "country": "LR",
+        "state": "Montserrado County"
+    },
+    {
+        "name": "New",
+        "lat": 6.0084489,
+        "lon": -10.0316823,
+        "country": "LR",
+        "state": "Grand Bassa County"
+    },
+    {
+        "name": "New",
+        "lat": 5.20609,
+        "lon": -8.62674,
+        "country": "LR",
+        "state": "Sinoe County"
+    }
+]

@@ -63,6 +63,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                 placeholder="Search location"
                 value={location}
                 onChange={handleInputChange}
+                data-cy="input-search"
             />
 
             <Transition
@@ -74,7 +75,7 @@ export const SearchInput: FC<props> = ({ options, searchTerm, setSearchTerm, set
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
             >
-                <div className="absolute z-10 md:w-[600px] sm:w-[500px] w-[300px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
+                <div data-cy="suggestion-list" className="absolute z-10 md:w-[600px] sm:w-[500px] w-[300px] bg-white border border-gray-300 rounded-br-md rounded-bl-md shadow-lg">
                     <ul>
                         {filteredOptions?.map((option: any, index) => (
                             <li

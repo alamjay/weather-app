@@ -10,7 +10,7 @@ export const TodayCard = ({todaysWeather}: any) => {
                     <>
                         <div className="flex items-center gap-x-2 w-9/12">
                             <img className="h-[50px] md:h-[100px]" src={iconMapping(todaysWeather?.icon)} />
-                            <p className="text-textMobile lg:text-[18px] text-gray-800">{todaysWeather?.description}</p>
+                            <p data-cy="forecast-description" className="text-textMobile lg:text-[18px] text-gray-800">{todaysWeather?.description}</p>
                         </div>
                         <div className="flex flex-col divide-y-2 w-3/12">
                             <p className="text-textFiguresMobile lg:text-textFigures text-gray-800">{todaysWeather?.temp_min.toFixed()}°C</p>

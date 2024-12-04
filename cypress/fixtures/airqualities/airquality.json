@@ -1,0 +1,20 @@
+{
+    "dateTime": "2024-12-04T16:00:00Z",
+    "regionCode": "gb",
+    "indexes": [
+      {
+        "code": "uaqi",
+        "displayName": "Universal AQI",
+        "aqi": 62,
+        "aqiDisplay": "62",
+        "color": {
+          "red": 0.70980394,
+          "green": 0.8862745,
+          "blue": 0.11764706
+        },
+        "category": "Good air quality",
+        "dominantPollutant": "pm25"
+      }
+    ]
+  }
+  
